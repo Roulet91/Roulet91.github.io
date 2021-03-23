@@ -28,21 +28,29 @@ scene.add(avatar);
 var hand= new THREE.SphereGeometry(50);
 var righthand= new THREE.Mesh(hand, cover);
 righthand.position.set(-150,0,0);
-    scene.add(righthand);
+    avatar.add(righthand);
 //mano izquierda
 var lefthand= new THREE.Mesh(hand, cover);
 lefthand.position.set(150,0,0);
-    scene.add(lefthand);
+    avatar.add(lefthand);
     //pie
     var foot = new THREE.SphereGeometry(50)
     //pie derecho
 var rightfoot= new THREE.Mesh(foot, cover);
 rightfoot.position.set(-75,-125,0);
-    scene.add(rightfoot);
+    avatar.add(rightfoot);
     //pie izquierdo
 var leftfoot= new THREE.Mesh(foot, cover);
 leftfoot.position.set(75,-125,0);
-    scene.add(leftfoot);
+    avatar.add(leftfoot);
+    //animacion
+    function animate(){
+        requestAnimationFrame(animate);
+        avatar.rotation.z= avatar.rotation.z + 0.20;
+        renderer.render(scene,camera);
+         }
+    
+    animate();
   // Now, show what the camera sees on the screen:
   renderer.render(scene, camera);
 </script>
