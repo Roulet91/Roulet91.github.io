@@ -43,6 +43,15 @@ rightfoot.position.set(-75,-125,0);
 var leftfoot= new THREE.Mesh(foot, cover);
 leftfoot.position.set(75,-125,0);
     avatar.add(leftfoot);
+    //movimiento
+    document.addEventListener("keydown", gestionarTecla)
+    function gestionarTecla(evento){
+        var codigo= evento.code;
+        if (codigo=="KeyA")avatar.position.x -=5
+        if (codigo=="KeyD")avatar.position.x +=5
+        if (codigo=="KeyW")avatar.position.z +=5
+        if (codigo=="KeyS")avatar.position.z -=5
+    }
     //animacion
     function animate(){
         requestAnimationFrame(animate);
@@ -51,6 +60,15 @@ leftfoot.position.set(75,-125,0);
          }
     
     animate();
+   var isCarwheeling = true;
+    function animate() {
+        requestAnimationFrame(animate);
+        if (isCarwheeling) {
+            avatar.rotation.z = avatar.rotation.z +0.05;
+        }
+        renderer.render(scene, camera);
+    }
+     animate();
   // Now, show what the camera sees on the screen:
   renderer.render(scene, camera);
 </script>
