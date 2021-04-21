@@ -11,7 +11,7 @@
   var aspectRatio = window.innerWidth / window.innerHeight;
   var camera = new THREE.PerspectiveCamera(75, aspectRatio, 1, 10000);
   camera.position.z = 500;
-    //camera.position.y= 2500;
+    //camera.position.y= 500;
     //scene.add(camera);
 
   // The "renderer" draws what the camera sees onto the screen:
@@ -55,11 +55,12 @@ leftfoot.position.set(75,-125,0);
     document.addEventListener("keydown", gestionarTecla)
     function gestionarTecla(evento){
         var codigo= evento.code;
-        if (codigo=="KeyA")marcador.position.x -=5
-        if (codigo=="KeyD")marcador.position.x +=5
-        if (codigo=="KeyW")marcador.position.z +=5
-        if (codigo=="KeyS")marcador.position.z -=5
+        if (codigo=="KeyA")marcador.rotation.y -=0.01;
+        if (codigo=="KeyD")marcador.rotation.y +=0.01;
+        if (codigo=="KeyW")marcador.position.z +=20
+        if (codigo=="KeyS")marcador.position.z -=20
         if (codigo=="KeyG")isCarwheeling= ! isCarwheeling;
+    
     }
     //animacion
     function animate(){
