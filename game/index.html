@@ -10,9 +10,9 @@
   // The "camera" is what sees the stuff:
   var aspectRatio = window.innerWidth / window.innerHeight;
   var camera = new THREE.PerspectiveCamera(75, aspectRatio, 1, 10000);
-  camera.position.z = 5000;
-    camera.position.y= 2500;
-  scene.add(camera);
+  camera.position.z = 500;
+    //camera.position.y= 2500;
+    //scene.add(camera);
 
   // The "renderer" draws what the camera sees onto the screen:
   var renderer = new THREE.WebGLRenderer({antialias: true});
@@ -20,11 +20,18 @@
   document.body.appendChild(renderer.domElement);
 
   // ******** START CODING ON THE NEXT LINE ********
+    //Marcador
+    var marcador= new THREE.Object3D();
     //cuerpo
 var body= new THREE.SphereGeometry(100);
 var cover= new THREE.MeshNormalMaterial(flat);
 var avatar= new THREE.Mesh(body, cover);
-scene.add(avatar);
+//avatar.add(camera);
+    //scene.add(camera);
+    //scene.add(avatar);
+    scene.add(marcador);
+    marcador.add(avatar);
+    marcador.add(camera);
 //mano derecha
 var hand= new THREE.SphereGeometry(50);
 var righthand= new THREE.Mesh(hand, cover);
@@ -48,10 +55,10 @@ leftfoot.position.set(75,-125,0);
     document.addEventListener("keydown", gestionarTecla)
     function gestionarTecla(evento){
         var codigo= evento.code;
-        if (codigo=="KeyA")avatar.position.x -=5
-        if (codigo=="KeyD")avatar.position.x +=5
-        if (codigo=="KeyW")avatar.position.z +=5
-        if (codigo=="KeyS")avatar.position.z -=5
+        if (codigo=="KeyA")marcador.position.x -=5
+        if (codigo=="KeyD")marcador.position.x +=5
+        if (codigo=="KeyW")marcador.position.z +=5
+        if (codigo=="KeyS")marcador.position.z -=5
         if (codigo=="KeyG")isCarwheeling= ! isCarwheeling;
     }
     //animacion
