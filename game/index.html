@@ -76,28 +76,16 @@ leftfoot.position.set(75,-125,0);
         Math.cos(grados);
         var inc_x= -20*Math.sin(radianes);
         var inc_z= -20*Math.cos(radianes);
-        objeto.position.x += inc_x
-   objeto.position.z +=inc_z
-   
-   //TODO: Comprobar si hemos colisionado
-     
-    if (haycolision()){
-        //SI colisionamos deshacemos el paso
-        objeto.position.x += inc_x
-   objeto.position.z +=inc_z
+        objeto.position.x += inc_x;
+        objeto.position.z +=inc_z;
     }
-     }
+	//Si colisionamos
     function hayColision(){
-        return false;
+        var vector= new THREE.Vector3(0,-1,0);
+        var raycaster= new THREE.Raycaster(marcador.position, vector);
+        var colisionados=
+        
     }
-    //animacion
-    function animate(){
-        requestAnimationFrame(animate);
-        avatar.rotation.z= avatar.rotation.z + 0.05;
-        renderer.render(scene,camera);
-         }
-   
-    animate();
    var isCarwheeling = false;
     function animate() {
         requestAnimationFrame(animate);
@@ -108,6 +96,8 @@ leftfoot.position.set(75,-125,0);
     }
      animate();
     //Paisaje
+    var noPermitido = [];
+    
     function makeTreeAt(x,z) {
         var trunk = new THREE.Mesh(
             new THREE.CylinderGeometry(50, 50, 200),
@@ -123,6 +113,14 @@ leftfoot.position.set(75,-125,0);
         trunk.add(top);
        
         trunk.position.set(x, -75, z);
+        //Lista de objeto que no podemos atravesar
+var circulo= new THREE.CircleGeometry(100);
+    var circulo_t= new THREE.MeshNormalMaterial();
+var limite= new THREE.Mesh(circulo, circulo_t);
+    limite.position.y=-100;
+    limite.rotation.x=-Math.PI/2;
+    trunk.add(limite);
+    noPermitido.push(limite);
         scene.add(trunk);
     }
    //campo arboles
