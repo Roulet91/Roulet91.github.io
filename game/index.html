@@ -29,6 +29,7 @@ var avatar= new THREE.Mesh(body, cover);
 avatar.add(camera);
    // scene.add(camera);
    //scene.add(avatar);
+    marcador.position.x=2750
     scene.add(marcador);
     marcador.add(avatar);
     marcador.add(camera);
@@ -78,13 +79,10 @@ leftfoot.position.set(75,-125,0);
         var inc_z= -20*Math.cos(radianes);
         objeto.position.x += inc_x;
         objeto.position.z +=inc_z;
-    }
-	//Si colisionamos
-    function hayColision(){
-        var vector= new THREE.Vector3(0,-1,0);
-        var raycaster= new THREE.Raycaster(marcador.position, vector);
-        var colisionados=
-        
+   if (hayColision()){
+       objeto.position.x -= inc_x;
+        objeto.position.z -=inc_z;
+   }  
     }
    var isCarwheeling = false;
     function animate() {
@@ -123,9 +121,18 @@ var limite= new THREE.Mesh(circulo, circulo_t);
     noPermitido.push(limite);
         scene.add(trunk);
     }
+    //Si colisionamos
+    function hayColision(){
+        var vector= new THREE.Vector3(0,-1,0);
+        var raycaster= new THREE.Raycaster(marcador.position, vector);
+        var colisionados= raycaster.intersectObjects(noPermitido);
+        if (colisionados.lenght>0) return true;
+        
+        return false;
+    }
    //campo arboles
     function crearCampoArboles(distancia_arboles,minimo_x,maximo_x,minimo_z,maximo_z){
-    var distancia_arboles = 400
+    var distancia_arboles = 800
     var minimo_x = -4000;
     var maximo_x = 4000;
     var minimo_z = -4000;
@@ -133,8 +140,10 @@ var limite= new THREE.Mesh(circulo, circulo_t);
    
     for (var x=minimo_x;x<=maximo_x;x=x+distancia_arboles) {
     for (var z=minimo_z;z<=maximo_z;z=z+distancia_arboles) {
+        //if((x>1000 || x<-1000) && (z>1000 || z<-1000)){
         makeTreeAt(x,z)
-        }    
+       // }    
+    }
     }
 }
     crearCampoArboles()
