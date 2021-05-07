@@ -126,7 +126,7 @@ var limite= new THREE.Mesh(circulo, circulo_t);
         var vector= new THREE.Vector3(0,-1,0);
         var raycaster= new THREE.Raycaster(marcador.position, vector);
         var colisionados= raycaster.intersectObjects(noPermitido);
-        if (colisionados.lenght>0) return true;
+        if (colisionados.length>0) return true;
         
         return false;
     }
